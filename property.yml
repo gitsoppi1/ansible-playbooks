@@ -1,0 +1,12 @@
+---
+- hosts: 172.31.35.190
+  vars:
+     hostname: "{{ lookup('file', '/home/ec2-user/hostname.txt') }}" 
+  tasks: 
+   - name: changing hostnames
+     replace:
+       path: /root/swapna.xml
+       regexp: 'SIT2APPPORTAL2'
+       replace: '{{hostname}}'
+       backup: yes
+     become: yes
